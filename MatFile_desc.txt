@@ -1,0 +1,18 @@
+header (u16) {
+	(1B, 1B) = 2B
+	name_size, n_subMat
+}
+
+name (char[]) {
+	(name_size)
+	name
+}
+
+SubMat0 {
+    (1B) = diffuse_size
+	diffuse_size
+	(diffuse_size)
+	tex_diffuse
+}
+
+Spherical Billboards and their Application to Rendering Explosions

@@ -1,0 +1,42 @@
+header (u16) {
+	(2B 2B 2B 2B) = 7B
+	n_vertex, n_faces, n_submeshes, material_size
+}
+
+material (char[]) {
+	(material_size)
+	material_name
+}
+
+position (f32) {
+    (4B 4B 4B) * n_vertex= 12B * n_vertex
+	vx0, vy0, vz0, vx1, vy1, vz1, vx2, vy2, vz2...
+}
+
+normal (f32) {
+    (4B 4B 4B) * n_vertex= 12B * n_vertex
+	nx0, ny0, nz0, nx1, ny1, nz1, nx2, ny2, nz2...
+}
+
+texcoord (f32[2]) {   
+    (4B 4B) * n_texcoord= 8B * n_texcoord
+	u0, v0, u1, v1, u2, v2...
+}
+
+faces (u16[3]) { 
+    (2B 2B 2B) * n_vertex= 6B * n_tris
+	i0[0], i1[0], i2[0], i0[1], i1[1], i2[1], i0[2], i1[2], i2[2]...
+	v[0], vt[0], vn[0], v[1], vt[1], vn[1], v[2], vt[2], vn[2]
+}
+
+// s (start): index of first submesh tri, n: number of tris
+submesh (u16[2]) {
+	(2B 2B) * n_submeshes = 4B * n_submeshes
+	s0, n0, s1, n1, s2, n2...
+}
+
+// m[i] = submaterial of submesh i
+materials (u8) {
+	(1B) * n_submeshes = n_submeshes
+	m0, m1, m2...
+}
